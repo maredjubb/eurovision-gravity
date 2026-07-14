@@ -1,0 +1,1325 @@
+-------------------------------------------------------------------------------------------------------------
+      name:  <unnamed>
+       log:  [path removed]
+  log type:  text
+ opened on:  20 Jun 2026, 16:21:41
+
+. 
+. // Note: Remove the asterisks to install these packages on the very first run.
+. // Once installed, leave them commented out to speed up the script.
+. 
+. * ssc install ftools, replace
+. * ssc install reghdfe, replace
+. * ssc install estout, replace
+. 
+. ********************************************************************************
+. **## 1. DATA IMPORT
+. ********************************************************************************
+. import delimited "data\processed\eurovision_panel_1957_2026.csv", varnames(1)
+(encoding automatically selected: ISO-8859-1)
+(49 vars, 38,781 obs)
+
+. 
+. *Verify import
+. describe
+
+Contains data
+ Observations:        38,781                  
+    Variables:            49                  
+-------------------------------------------------------------------------------------------------------------
+Variable      Storage   Display    Value
+    name         type    format    label      Variable label
+-------------------------------------------------------------------------------------------------------------
+year            int     %8.0g                 
+from_country_id str3    %9s                   
+to_country_id   str3    %9s                   
+total_points    byte    %8.0g                 
+tele_points     byte    %8.0g                 
+jury_points     byte    %8.0g                 
+norm_points     float   %9.0g                 
+voting_regime   byte    %8.0g                 
+pair_id         str7    %9s                   
+numeric_id      int     %8.0g                 
+contig          byte    %8.0g                 
+comlang_off     byte    %8.0g                 
+comlang_ethno   byte    %8.0g                 
+colony          byte    %8.0g                 
+comcol          byte    %8.0g                 
+curcol          byte    %8.0g                 
+col45           byte    %8.0g                 
+smctry          byte    %8.0g                 
+distw           float   %9.0g                 
+~t_from_country byte    %8.0g                 
+~v_from_country byte    %8.0g                 
+scand~m_country byte    %8.0g                 
+balkan_from_c~y byte    %8.0g                 
+fo~t_to_country byte    %8.0g                 
+fo~v_to_country byte    %8.0g                 
+scand~o_country byte    %8.0g                 
+balkan_to_cou~y byte    %8.0g                 
+former_soviet   byte    %8.0g                 
+former_yugoslav byte    %8.0g                 
+scandinavian    byte    %8.0g                 
+balkan          byte    %8.0g                 
+eu_membership   byte    %8.0g                 
+from_gdp_usd    float   %9.0g                 
+from_gdp_pc_usd float   %9.0g                 
+from_log_~p_usd float   %9.0g                 
+from_log_~c_usd float   %9.0g                 
+to_gdp_usd      float   %9.0g                 
+to_gdp_pc_usd   float   %9.0g                 
+to_log_gdp_usd  float   %9.0g                 
+to_log_gdp_pc~d float   %9.0g                 
+gdp_similarity  float   %9.0g                 
+migrant_stock   float   %9.0g                 
+migration_sou~e str8    %9s                   
+voting_countr~n long    %12.0g                
+migration_int~y float   %9.0g                 
+trade_bilateral float   %9.0g                 
+trade_openness  float   %9.0g                 
+log_trade_ope~s float   %9.0g                 
+log_trade_bil~l float   %9.0g                 
+-------------------------------------------------------------------------------------------------------------
+Sorted by: 
+     Note: Dataset has changed since last saved.
+
+. list in 1/5
+
+     +--------------------------------------------------------------------------------------------------+
+  1. | year | from_c~d | to_cou~d | total_~s | tele_p~s  | jury_p~s  | norm_p~s  | voting~e  | pair_id  |
+     | 1957 |      AUT |      NLD |        6 |        .  |        .  |       .6  |       10  | AUT-NLD  |
+     |--------------------------------------------------------------------------------------------------|
+     | numeri~d | contig | comlan~f | comlan~o | colony | comcol | curcol | col45 | smctry  |    distw  |
+     |        0 |      0 |        0 |        0 |      0 |      0 |      0 |     0 |      0  | 864.5513  |
+     |----------+-----------------------------------------------------------------+---------------------|
+     | former.. | former.. | s~from~y | b~from~y | former.. | former.. | s~to_c~y | b~to_c~y | former~t |
+     |        0 |        0 |        0 |        0 |        0 |        0 |        0 |        0 |        0 |
+     |----------+----------+----------------------------------------------------------------------------|
+     | former~v | scandi~n | balkan | eu_mem~p | from_g.. | from_g.. | from_l.. | from_l..  | to_gdp..  |
+     |        0 |        0 |      0 |        0 |        . |        . |        . |        .  |        .  |
+     |----------+----------+----------------------------------------------------------------------------|
+     | to_gdp.. | to_log.. | to_log.. | gdp_si~y | migran~k | migrat~e | voting~n | migrat~y | trade_~l |
+     |        . |        . |        . |        . |        . |  missing |        . |        . |        . |
+     |--------------------------------+--------------------------------+--------------------------------|
+     |            trade_~s            |            log_tr~s            |            log_tr~l            |
+     |                   .            |                   .            |                   .            |
+     +--------------------------------------------------------------------------------------------------+
+
+     +--------------------------------------------------------------------------------------------------+
+  2. | year | from_c~d | to_cou~d | total_~s | tele_p~s  | jury_p~s  | norm_p~s  | voting~e  | pair_id  |
+     | 1957 |      AUT |      FRA |        0 |        .  |        .  |        0  |       10  | AUT-FRA  |
+     |--------------------------------------------------------------------------------------------------|
+     | numeri~d | contig | comlan~f | comlan~o | colony | comcol | curcol | col45 | smctry  |    distw  |
+     |        1 |      0 |        0 |        0 |      0 |      0 |      0 |     0 |      0  | 975.7691  |
+     |----------+-----------------------------------------------------------------+---------------------|
+     | former.. | former.. | s~from~y | b~from~y | former.. | former.. | s~to_c~y | b~to_c~y | former~t |
+     |        0 |        0 |        0 |        0 |        0 |        0 |        0 |        0 |        0 |
+     |----------+----------+----------------------------------------------------------------------------|
+     | former~v | scandi~n | balkan | eu_mem~p | from_g.. | from_g.. | from_l.. | from_l..  | to_gdp..  |
+     |        0 |        0 |      0 |        0 |        . |        . |        . |        .  |        .  |
+     |----------+----------+----------------------------------------------------------------------------|
+     | to_gdp.. | to_log.. | to_log.. | gdp_si~y | migran~k | migrat~e | voting~n | migrat~y | trade_~l |
+     |        . |        . |        . |        . |        . |  missing |        . |        . |        . |
+     |--------------------------------+--------------------------------+--------------------------------|
+     |            trade_~s            |            log_tr~s            |            log_tr~l            |
+     |                   .            |                   .            |                   .            |
+     +--------------------------------------------------------------------------------------------------+
+
+     +--------------------------------------------------------------------------------------------------+
+  3. | year | from_c~d | to_cou~d | total_~s | tele_p~s  | jury_p~s  | norm_p~s  | voting~e  | pair_id  |
+     | 1957 |      AUT |      DNK |        0 |        .  |        .  |        0  |       10  | AUT-DNK  |
+     |--------------------------------------------------------------------------------------------------|
+     | numeri~d | contig | comlan~f | comlan~o | colony | comcol | curcol | col45 | smctry  |    distw  |
+     |        2 |      0 |        0 |        0 |      0 |      0 |      0 |     0 |      0  | 926.4196  |
+     |----------+-----------------------------------------------------------------+---------------------|
+     | former.. | former.. | s~from~y | b~from~y | former.. | former.. | s~to_c~y | b~to_c~y | former~t |
+     |        0 |        0 |        0 |        0 |        0 |        0 |        1 |        0 |        0 |
+     |----------+----------+----------------------------------------------------------------------------|
+     | former~v | scandi~n | balkan | eu_mem~p | from_g.. | from_g.. | from_l.. | from_l..  | to_gdp..  |
+     |        0 |        0 |      0 |        0 |        . |        . |        . |        .  |        .  |
+     |----------+----------+----------------------------------------------------------------------------|
+     | to_gdp.. | to_log.. | to_log.. | gdp_si~y | migran~k | migrat~e | voting~n | migrat~y | trade_~l |
+     |        . |        . |        . |        . |        . |  missing |        . |        . |        . |
+     |--------------------------------+--------------------------------+--------------------------------|
+     |            trade_~s            |            log_tr~s            |            log_tr~l            |
+     |                   .            |                   .            |                   .            |
+     +--------------------------------------------------------------------------------------------------+
+
+     +--------------------------------------------------------------------------------------------------+
+  4. | year | from_c~d | to_cou~d | total_~s | tele_p~s  | jury_p~s  | norm_p~s  | voting~e  | pair_id  |
+     | 1957 |      AUT |      LUX |        3 |        .  |        .  |       .3  |       10  | AUT-LUX  |
+     |--------------------------------------------------------------------------------------------------|
+     | numeri~d | contig | comlan~f | comlan~o | colony | comcol | curcol | col45 | smctry  |    distw  |
+     |        3 |      0 |        1 |        0 |      0 |      0 |      0 |     0 |      0  | 701.9164  |
+     |----------+-----------------------------------------------------------------+---------------------|
+     | former.. | former.. | s~from~y | b~from~y | former.. | former.. | s~to_c~y | b~to_c~y | former~t |
+     |        0 |        0 |        0 |        0 |        0 |        0 |        0 |        0 |        0 |
+     |----------+----------+----------------------------------------------------------------------------|
+     | former~v | scandi~n | balkan | eu_mem~p | from_g.. | from_g.. | from_l.. | from_l..  | to_gdp..  |
+     |        0 |        0 |      0 |        0 |        . |        . |        . |        .  |        .  |
+     |----------+----------+----------------------------------------------------------------------------|
+     | to_gdp.. | to_log.. | to_log.. | gdp_si~y | migran~k | migrat~e | voting~n | migrat~y | trade_~l |
+     |        . |        . |        . |        . |        . |  missing |        . |        . |        . |
+     |--------------------------------+--------------------------------+--------------------------------|
+     |            trade_~s            |            log_tr~s            |            log_tr~l            |
+     |                   .            |                   .            |                   .            |
+     +--------------------------------------------------------------------------------------------------+
+
+     +--------------------------------------------------------------------------------------------------+
+  5. | year | from_c~d | to_cou~d | total_~s | tele_p~s  | jury_p~s  | norm_p~s  | voting~e  | pair_id  |
+     | 1957 |      AUT |      DEU |        0 |        .  |        .  |        0  |       10  | AUT-DEU  |
+     |--------------------------------------------------------------------------------------------------|
+     | numeri~d | contig | comlan~f | comlan~o | colony | comcol | curcol | col45 | smctry  |    distw  |
+     |        4 |      1 |        1 |        1 |      0 |      0 |      0 |     0 |      0  | 592.3266  |
+     |----------+-----------------------------------------------------------------+---------------------|
+     | former.. | former.. | s~from~y | b~from~y | former.. | former.. | s~to_c~y | b~to_c~y | former~t |
+     |        0 |        0 |        0 |        0 |        0 |        0 |        0 |        0 |        0 |
+     |----------+----------+----------------------------------------------------------------------------|
+     | former~v | scandi~n | balkan | eu_mem~p | from_g.. | from_g.. | from_l.. | from_l..  | to_gdp..  |
+     |        0 |        0 |      0 |        0 |        . |        . |        . |        .  |        .  |
+     |----------+----------+----------------------------------------------------------------------------|
+     | to_gdp.. | to_log.. | to_log.. | gdp_si~y | migran~k | migrat~e | voting~n | migrat~y | trade_~l |
+     |        . |        . |        . |        . |        . |  missing |        . |        . |        . |
+     |--------------------------------+--------------------------------+--------------------------------|
+     |            trade_~s            |            log_tr~s            |            log_tr~l            |
+     |                   .            |                   .            |                   .            |
+     +--------------------------------------------------------------------------------------------------+
+
+. 
+. * Declare panel structure
+. * numeric_id identifies each directed country pair
+. * year is the time dimension
+. xtset numeric_id year
+
+Panel variable: numeric_id (unbalanced)
+ Time variable: year, 1957 to 2026, but with gaps
+         Delta: 1 unit
+
+. 
+. ********************************************************************************
+. **##2. VARIABLE LABELS
+. ********************************************************************************
+. 
+. * Outcome variables
+. label variable total_points "Total points awarded"
+
+. label variable tele_points "Televote points awarded (post-2016)"
+
+. label variable jury_points "Jury points awarded (post-2016)"
+
+. label variable norm_points "Normalised points (0-1 scale)"
+
+. 
+. * Identifiers
+. label variable year "Year"
+
+. label variable from_country_id "Voting country (ISO3)"
+
+. label variable to_country_id "Recipient country (ISO3)"
+
+. label variable pair_id "Country pair identifier"
+
+. label variable numeric_id "Numeric pair identifier"
+
+. label variable voting_regime "Maximum points available in era"
+
+. 
+. * Geographic
+. label variable distw "Population-weighted bilateral distance (km)"
+
+. label variable contig "Shared border dummy"
+
+. 
+. * Linguistic
+. label variable comlang_off "Shared official language dummy"
+
+. label variable comlang_ethno "Shared ethnological language dummy"
+
+. 
+. * Colonial
+. label variable colony "Colonial link dummy"
+
+. label variable comcol "Common colonizer after 1945 dummy"
+
+. label variable col45 "Colonial relationship since 1945 dummy"
+
+. label variable curcol "Current colonial relationship dummy"
+
+. label variable smctry "Historically same country dummy"
+
+. 
+. * Geopolitical
+. label variable former_soviet "Both former Soviet states dummy"
+
+. label variable former_yugoslav "Both former Yugoslav states dummy"
+
+. label variable scandinavian "Both Scandinavian countries dummy"
+
+. label variable balkan "Both Balkan countries dummy"
+
+. label variable eu_membership "Both EU members in given year dummy"
+
+. 
+. * GDP
+. label variable from_gdp_usd "GDP of voting country (billions USD)"
+
+. label variable to_gdp_usd "GDP of recipient country (billions USD)"
+
+. label variable from_log_gdp_usd "Log GDP of voting country"
+
+. label variable to_log_gdp_usd "Log GDP of recipient country"
+
+. label variable from_gdp_pc_usd "GDP per capita of voting country (USD)"
+
+. label variable to_gdp_pc_usd "GDP per capita of recipient country (USD)"
+
+. label variable from_log_gdp_pc_usd "Log GDP per capita of voting country"
+
+. label variable to_log_gdp_pc_usd "Log GDP per capita of recipient country"
+
+. label variable gdp_similarity "GDP similarity index (0-1)"
+
+. 
+. * Migration
+. label variable migrant_stock "Bilateral migrant stock"
+
+. label variable migration_intensity "Migrant stock as share of voting country population"
+
+. label variable migration_source "Migration data source (UN_DESA/Eurostat/missing)"
+
+. label variable voting_country_population "Voting country total population"
+
+. 
+. * Trade
+. label variable trade_bilateral "Total bilateral trade (thousands USD)"
+
+. label variable trade_openness "Bilateral trade as share of combined GDP"
+
+. label variable log_trade_openness "Log trade openness"
+
+. label variable log_trade_bilateral "Log bilateral trade"
+
+. 
+. ********************************************************************************
+. **##3. SUMMARY STATISTICS
+. ********************************************************************************
+. * Key outcome variables
+. estpost summarize total_points tele_points jury_points norm_points
+
+             |  e(count)   e(sum_w)    e(mean)     e(Var)      e(sd)     e(min)     e(max)     e(sum) 
+-------------+----------------------------------------------------------------------------------------
+total_points |     38781      38781   3.004023   18.52381    4.30393          0         24     116499 
+ tele_points |      9849       9849   2.313737    12.5224     3.5387          0         12      22788 
+ jury_points |      9849       9849   2.313027   12.52355   3.538863          0         12      22781 
+ norm_points |     38781      38781   .2055957   .0808212   .2842908          0          1   7973.208 
+
+. estimates store key_outcomes
+
+. esttab key_outcomes using "results/tables/outcome_summary.csv", ///
+>        cells("count mean sd min max") noobs nonumbers nomtitles plain replace
+(output written to results/tables/outcome_summary.csv)
+
+. 
+. * Key covariates
+. estpost summarize distw migrant_stock migration_intensity from_gdp_usd to_gdp_usd /// 
+>           gdp_similarity trade_openness
+
+             |  e(count)   e(sum_w)    e(mean)     e(Var)      e(sd)     e(min)     e(max)     e(sum) 
+-------------+----------------------------------------------------------------------------------------
+       distw |     36493      36493   1932.798    3667661   1915.114   160.9283   17625.29   7.05e+07 
+migrant_st~k |     20619      20619   32567.42   2.31e+10   152003.9          0    3551965   6.72e+08 
+migration_~y |     20619      20619   .0026451   .0001235   .0111138          0   .3784487   54.54002 
+from_gdp_usd |     31950      31950   476.2294     643706   802.3129       1.42   5452.858   1.52e+07 
+  to_gdp_usd |     32237      32237   599.6608   874478.7   935.1356      1.616   5452.858   1.93e+07 
+gdp_simila~y |     31194      31194   .7699427   .0334264   .1828288   .0826081   .9999457   24017.59 
+trade_open~s |     23510      23510   .0032166   .0000395   .0062825   5.20e-08   .0973773   75.62213 
+
+. estimates store key_covariates
+
+. esttab key_covariates using "results/tables/key_covariates.csv", ///
+>        cells("count mean sd min max") noobs nonumbers nomtitles plain replace
+(output written to results/tables/key_covariates.csv)
+
+.                   
+. * Dummy variables 
+. tabulate contig
+
+     Shared |
+     border |
+      dummy |      Freq.     Percent        Cum.
+------------+-----------------------------------
+          0 |     33,038       90.53       90.53
+          1 |      3,455        9.47      100.00
+------------+-----------------------------------
+      Total |     36,493      100.00
+
+. tabulate comlang_off
+
+     Shared |
+   official |
+   language |
+      dummy |      Freq.     Percent        Cum.
+------------+-----------------------------------
+          0 |     34,256       93.87       93.87
+          1 |      2,237        6.13      100.00
+------------+-----------------------------------
+      Total |     36,493      100.00
+
+. tabulate comlang_ethno
+
+     Shared |
+ethnologica |
+ l language |
+      dummy |      Freq.     Percent        Cum.
+------------+-----------------------------------
+          0 |     34,338       94.09       94.09
+          1 |      2,155        5.91      100.00
+------------+-----------------------------------
+      Total |     36,493      100.00
+
+. tabulate colony
+
+   Colonial |
+ link dummy |      Freq.     Percent        Cum.
+------------+-----------------------------------
+          0 |     35,172       96.38       96.38
+          1 |      1,321        3.62      100.00
+------------+-----------------------------------
+      Total |     36,493      100.00
+
+. tabulate comcol
+
+     Common |
+  colonizer |
+ after 1945 |
+      dummy |      Freq.     Percent        Cum.
+------------+-----------------------------------
+          0 |     35,673       97.75       97.75
+          1 |        820        2.25      100.00
+------------+-----------------------------------
+      Total |     36,493      100.00
+
+. tabulate curcol
+
+    Current |
+   colonial |
+relationshi |
+    p dummy |      Freq.     Percent        Cum.
+------------+-----------------------------------
+          0 |     36,378       99.68       99.68
+          1 |        115        0.32      100.00
+------------+-----------------------------------
+      Total |     36,493      100.00
+
+. tabulate col45
+
+   Colonial |
+relationshi |
+    p since |
+ 1945 dummy |      Freq.     Percent        Cum.
+------------+-----------------------------------
+          0 |     35,937       98.48       98.48
+          1 |        556        1.52      100.00
+------------+-----------------------------------
+      Total |     36,493      100.00
+
+. tabulate smctry
+
+Historicall |
+     y same |
+    country |
+      dummy |      Freq.     Percent        Cum.
+------------+-----------------------------------
+          0 |     35,737       97.93       97.93
+          1 |        756        2.07      100.00
+------------+-----------------------------------
+      Total |     36,493      100.00
+
+. tabulate former_soviet
+
+Both former |
+     Soviet |
+     states |
+      dummy |      Freq.     Percent        Cum.
+------------+-----------------------------------
+          0 |     37,747       97.33       97.33
+          1 |      1,034        2.67      100.00
+------------+-----------------------------------
+      Total |     38,781      100.00
+
+. tabulate former_yugoslav
+
+Both former |
+   Yugoslav |
+     states |
+      dummy |      Freq.     Percent        Cum.
+------------+-----------------------------------
+          0 |     38,523       99.33       99.33
+          1 |        258        0.67      100.00
+------------+-----------------------------------
+      Total |     38,781      100.00
+
+. tabulate scandinavian
+
+       Both |
+Scandinavia |
+n countries |
+      dummy |      Freq.     Percent        Cum.
+------------+-----------------------------------
+          0 |     37,967       97.90       97.90
+          1 |        814        2.10      100.00
+------------+-----------------------------------
+      Total |     38,781      100.00
+
+. tabulate balkan
+
+Both Balkan |
+  countries |
+      dummy |      Freq.     Percent        Cum.
+------------+-----------------------------------
+          0 |     37,660       97.11       97.11
+          1 |      1,121        2.89      100.00
+------------+-----------------------------------
+      Total |     38,781      100.00
+
+. tabulate eu_membership
+
+    Both EU |
+ members in |
+ given year |
+      dummy |      Freq.     Percent        Cum.
+------------+-----------------------------------
+          0 |     28,260       72.87       72.87
+          1 |     10,521       27.13      100.00
+------------+-----------------------------------
+      Total |     38,781      100.00
+
+. 
+. 
+. * Check distribution of normalised points 
+. tabulate norm_points if norm_points == 0
+
+ Normalised |
+points (0-1 |
+     scale) |      Freq.     Percent        Cum.
+------------+-----------------------------------
+          0 |     20,162      100.00      100.00
+------------+-----------------------------------
+      Total |     20,162      100.00
+
+. generate zero_vote = (norm_points == 0)
+
+. summarize zero_vote
+
+    Variable |        Obs        Mean    Std. dev.       Min        Max
+-------------+---------------------------------------------------------
+   zero_vote |     38,781    .5198938    .4996105          0          1
+
+. 
+. histogram norm_points, frequency ///
+>     xtitle("Normalised Points (0-1 scale)") ///
+>     ytitle("Frequency") ///
+>     title("Distribution of Normalised Points") ///
+>     bin(20) ///
+>     ylabel(0(5000)20000, format(%9.0fc))
+(bin=20, start=0, width=.05)
+
+. 
+. graph export "results/figures/norm_points_histogram.png", replace width(1200)
+file results/figures/norm_points_histogram.png saved as PNG format
+
+. 
+. * Correlation matrix of continuous variables
+. estpost correlate norm_points distw migrant_stock migration_intensity ///
+>         from_log_gdp_usd to_log_gdp_usd gdp_similarity ///
+>         log_trade_openness, matrix casewise
+
+             |      e(b)     e(rho)       e(p)   e(count) 
+-------------+--------------------------------------------
+norm_points  |                                            
+ norm_points |         1          1                 17197 
+       distw |  -.035892   -.035892   2.50e-06      17197 
+migrant_st~k |  .1457704   .1457704   2.65e-82      17197 
+migration_~y |  .1944078   .1944078   4.4e-146      17197 
+from_l~p_usd | -.0077567  -.0077567     .30909      17197 
+to_log~p_usd |  .0000964   .0000964   .9899103      17197 
+gdp_simila~y |  .0131859   .0131859   .0837884      17197 
+log_trade_~s |  .1917771   .1917771   3.9e-142      17197 
+distw        |                                            
+       distw |         1          1                 17197 
+migrant_st~k | -.0227255  -.0227255   .0028794      17197 
+migration_~y | -.0545423  -.0545423   8.23e-13      17197 
+from_l~p_usd |  .0900505   .0900505   2.66e-32      17197 
+to_log~p_usd |  .0584121   .0584121   1.77e-14      17197 
+gdp_simila~y |  .0036491   .0036491   .6322899      17197 
+log_trade_~s | -.3179106  -.3179106          0      17197 
+migrant_st~k |                                            
+migrant_st~k |         1          1                 17197 
+migration_~y |  .3277552   .3277552          0      17197 
+from_l~p_usd |  .2090359   .2090359   4.3e-169      17197 
+to_log~p_usd |  .0771737   .0771737   3.87e-24      17197 
+gdp_simila~y |  .0609468   .0609468   1.25e-15      17197 
+log_trade_~s |  .2227119   .2227119   3.0e-192      17197 
+migration_~y |                                            
+migration_~y |         1          1                 17197 
+from_l~p_usd | -.0478937  -.0478937   3.30e-10      17197 
+to_log~p_usd |  .1062437   .1062437   2.34e-44      17197 
+gdp_simila~y | -.0622713  -.0622713   3.00e-16      17197 
+log_trade_~s |  .1526089   .1526089   4.09e-90      17197 
+from_l~p_usd |                                            
+from_l~p_usd |         1          1                 17197 
+to_log~p_usd |  .0494896   .0494896   8.39e-11      17197 
+gdp_simila~y |  .4358331   .4358331          0      17197 
+log_trade_~s |  .4154694   .4154694          0      17197 
+to_log~p_usd |                                            
+to_log~p_usd |         1          1                 17197 
+gdp_simila~y |  .1616744   .1616744   4.8e-101      17197 
+log_trade_~s |   .382366    .382366          0      17197 
+gdp_simila~y |                                            
+gdp_simila~y |         1          1                 17197 
+log_trade_~s |  .5680659   .5680659          0      17197 
+log_trade_~s |                                            
+log_trade_~s |         1          1                 17197 
+
+. esttab using "results/tables/correlation_matrix.csv", ///
+>        unstack not noobs nonumbers nomtitles plain replace
+(output written to results/tables/correlation_matrix.csv)
+
+. 
+. ********************************************************************************
+. **##4. Baseline Regressions
+. ********************************************************************************
+. * Model (1): Baseline Cultural Gravity
+. reghdfe norm_points distw contig comlang_off colony, ///
+>         absorb(year from_country_id to_country_id) vce(robust)
+(MWFE estimator converged in 8 iterations)
+
+HDFE Linear regression                            Number of obs   =     36,493
+Absorbing 3 HDFE groups                           F(   4,  36327) =     260.86
+                                                  Prob > F        =     0.0000
+                                                  R-squared       =     0.1213
+                                                  Adj R-squared   =     0.1173
+                                                  Within R-sq.    =     0.0396
+                                                  Root MSE        =     0.2669
+
+------------------------------------------------------------------------------
+             |               Robust
+ norm_points | Coefficient  std. err.      t    P>|t|     [95% conf. interval]
+-------------+----------------------------------------------------------------
+       distw |  -.0000555   2.59e-06   -21.40   0.000    -.0000605   -.0000504
+      contig |   .0602505   .0073134     8.24   0.000      .045916     .074585
+ comlang_off |   .0053811   .0088004     0.61   0.541     -.011868    .0226302
+      colony |   .1109046   .0104217    10.64   0.000     .0904778    .1313315
+       _cons |   .3028894   .0055892    54.19   0.000     .2919343    .3138445
+------------------------------------------------------------------------------
+
+Absorbed degrees of freedom:
+---------------------------------------------------------+
+     Absorbed FE | Categories  - Redundant  = Num. Coefs |
+-----------------+---------------------------------------|
+            year |        69           0          69     |
+ from_country_id |        48           1          47     |
+   to_country_id |        47           1          46    ?|
+---------------------------------------------------------+
+? = number of redundant parameters may be higher
+
+. estimates store model_1
+
+. 
+. * Model (2): Economic & Size Controls
+. reghdfe norm_points distw contig comlang_off colony from_log_gdp_usd ///
+>         to_log_gdp_usd gdp_similarity log_trade_openness, ///
+>                 absorb(year from_country_id to_country_id) vce(robust)
+(MWFE estimator converged in 8 iterations)
+
+HDFE Linear regression                            Number of obs   =     22,265
+Absorbing 3 HDFE groups                           F(   8,  22141) =     215.19
+                                                  Prob > F        =     0.0000
+                                                  R-squared       =     0.1469
+                                                  Adj R-squared   =     0.1421
+                                                  Within R-sq.    =     0.0917
+                                                  Root MSE        =     0.2608
+
+------------------------------------------------------------------------------------
+                   |               Robust
+       norm_points | Coefficient  std. err.      t    P>|t|     [95% conf. interval]
+-------------------+----------------------------------------------------------------
+             distw |  -.0000179   3.44e-06    -5.21   0.000    -.0000247   -.0000112
+            contig |   .0590405   .0097014     6.09   0.000     .0400251    .0780559
+       comlang_off |   .0376791   .0132634     2.84   0.005     .0116818    .0636764
+            colony |   .0997047   .0130445     7.64   0.000     .0741366    .1252728
+  from_log_gdp_usd |  -.0068751   .0101005    -0.68   0.496    -.0266728    .0129225
+    to_log_gdp_usd |   -.005727   .0101703    -0.56   0.573    -.0256615    .0142074
+    gdp_similarity |  -.2444562   .0157948   -15.48   0.000    -.2754152   -.2134972
+log_trade_openness |   .0516773   .0021425    24.12   0.000     .0474778    .0558767
+             _cons |   .8455701   .0782717    10.80   0.000     .6921519    .9989882
+------------------------------------------------------------------------------------
+
+Absorbed degrees of freedom:
+---------------------------------------------------------+
+     Absorbed FE | Categories  - Redundant  = Num. Coefs |
+-----------------+---------------------------------------|
+            year |        29           0          29     |
+ from_country_id |        45           1          44     |
+   to_country_id |        44           1          43    ?|
+---------------------------------------------------------+
+? = number of redundant parameters may be higher
+
+. estimates store model_2
+
+. 
+. * Model (3): Migration
+. reghdfe norm_points distw contig comlang_off colony from_log_gdp_usd ///
+>         to_log_gdp_usd gdp_similarity log_trade_openness migration_intensity, ///
+>                 absorb(year from_country_id to_country_id) vce(robust)
+(MWFE estimator converged in 8 iterations)
+
+HDFE Linear regression                            Number of obs   =     17,197
+Absorbing 3 HDFE groups                           F(   9,  17072) =     175.48
+                                                  Prob > F        =     0.0000
+                                                  R-squared       =     0.1789
+                                                  Adj R-squared   =     0.1730
+                                                  Within R-sq.    =     0.1076
+                                                  Root MSE        =     0.2618
+
+-------------------------------------------------------------------------------------
+                    |               Robust
+        norm_points | Coefficient  std. err.      t    P>|t|     [95% conf. interval]
+--------------------+----------------------------------------------------------------
+              distw |   -.000014   4.09e-06    -3.42   0.001     -.000022   -5.98e-06
+             contig |   .0273267   .0104694     2.61   0.009     .0068056    .0478479
+        comlang_off |   .0316732   .0145867     2.17   0.030     .0030819    .0602645
+             colony |   .0501954     .01414     3.55   0.000     .0224794    .0779113
+   from_log_gdp_usd |  -.0058289   .0121071    -0.48   0.630      -.02956    .0179022
+     to_log_gdp_usd |   .0084181   .0114801     0.73   0.463     -.014084    .0309202
+     gdp_similarity |  -.2520598   .0200634   -12.56   0.000    -.2913861   -.2127336
+ log_trade_openness |   .0565144   .0026372    21.43   0.000     .0513453    .0616835
+migration_intensity |   3.009884   .3434188     8.76   0.000     2.336748     3.68302
+              _cons |   .7924072   .0933929     8.48   0.000     .6093475     .975467
+-------------------------------------------------------------------------------------
+
+Absorbed degrees of freedom:
+---------------------------------------------------------+
+     Absorbed FE | Categories  - Redundant  = Num. Coefs |
+-----------------+---------------------------------------|
+            year |        29           0          29     |
+ from_country_id |        45           1          44     |
+   to_country_id |        44           1          43    ?|
+---------------------------------------------------------+
+? = number of redundant parameters may be higher
+
+. estimates store model_3
+
+. 
+. * Model (3b): Migration (ethnological language)
+. reghdfe norm_points distw contig comlang_ethno colony from_log_gdp_usd ///
+>         to_log_gdp_usd gdp_similarity log_trade_openness migration_intensity, ///
+>                 absorb(year from_country_id to_country_id) vce(robust)
+(MWFE estimator converged in 8 iterations)
+
+HDFE Linear regression                            Number of obs   =     17,197
+Absorbing 3 HDFE groups                           F(   9,  17072) =     175.44
+                                                  Prob > F        =     0.0000
+                                                  R-squared       =     0.1790
+                                                  Adj R-squared   =     0.1731
+                                                  Within R-sq.    =     0.1077
+                                                  Root MSE        =     0.2618
+
+-------------------------------------------------------------------------------------
+                    |               Robust
+        norm_points | Coefficient  std. err.      t    P>|t|     [95% conf. interval]
+--------------------+----------------------------------------------------------------
+              distw |  -.0000145   4.10e-06    -3.53   0.000    -.0000225   -6.44e-06
+             contig |   .0276534   .0103575     2.67   0.008     .0073516    .0479552
+      comlang_ethno |   .0319213    .012923     2.47   0.014     .0065909    .0572517
+             colony |    .051427   .0140709     3.65   0.000     .0238465    .0790075
+   from_log_gdp_usd |  -.0058159   .0121062    -0.48   0.631    -.0295454    .0179135
+     to_log_gdp_usd |   .0083353   .0114777     0.73   0.468    -.0141623    .0308328
+     gdp_similarity |  -.2504109   .0200475   -12.49   0.000    -.2897061   -.2111157
+ log_trade_openness |   .0560698   .0026474    21.18   0.000     .0508807     .061259
+migration_intensity |   2.993624   .3429591     8.73   0.000     2.321389    3.665859
+              _cons |   .7890942   .0933829     8.45   0.000      .606054    .9721344
+-------------------------------------------------------------------------------------
+
+Absorbed degrees of freedom:
+---------------------------------------------------------+
+     Absorbed FE | Categories  - Redundant  = Num. Coefs |
+-----------------+---------------------------------------|
+            year |        29           0          29     |
+ from_country_id |        45           1          44     |
+   to_country_id |        44           1          43    ?|
+---------------------------------------------------------+
+? = number of redundant parameters may be higher
+
+. estimates store model_3b
+
+. 
+. * Model (3c): Migration (colony check)
+. reghdfe norm_points distw contig comlang_off col45 comcol smctry ///
+>         from_log_gdp_usd to_log_gdp_usd gdp_similarity log_trade_openness ///
+>                 migration_intensity, absorb(year from_country_id to_country_id) vce(robust)
+(MWFE estimator converged in 8 iterations)
+
+HDFE Linear regression                            Number of obs   =     17,197
+Absorbing 3 HDFE groups                           F(  11,  17070) =     147.98
+                                                  Prob > F        =     0.0000
+                                                  R-squared       =     0.1798
+                                                  Adj R-squared   =     0.1737
+                                                  Within R-sq.    =     0.1085
+                                                  Root MSE        =     0.2617
+
+-------------------------------------------------------------------------------------
+                    |               Robust
+        norm_points | Coefficient  std. err.      t    P>|t|     [95% conf. interval]
+--------------------+----------------------------------------------------------------
+              distw |  -.0000139   4.09e-06    -3.41   0.001     -.000022   -5.92e-06
+             contig |   .0356191    .010487     3.40   0.001     .0150635    .0561747
+        comlang_off |   .0274168    .014463     1.90   0.058    -.0009321    .0557657
+              col45 |   .0990477   .0209689     4.72   0.000     .0579465     .140149
+             comcol |   .0012342    .014987     0.08   0.934    -.0281418    .0306102
+             smctry |  -.0179076   .0177351    -1.01   0.313    -.0526703    .0168552
+   from_log_gdp_usd |  -.0059475   .0121043    -0.49   0.623    -.0296732    .0177782
+     to_log_gdp_usd |   .0080779   .0114792     0.70   0.482    -.0144226    .0305784
+     gdp_similarity |  -.2505222   .0201385   -12.44   0.000    -.2899957   -.2110487
+ log_trade_openness |   .0571179   .0027824    20.53   0.000     .0516641    .0625717
+migration_intensity |   2.852859   .3395597     8.40   0.000     2.187287    3.518431
+              _cons |   .7979607   .0935629     8.53   0.000     .6145678    .9813537
+-------------------------------------------------------------------------------------
+
+Absorbed degrees of freedom:
+---------------------------------------------------------+
+     Absorbed FE | Categories  - Redundant  = Num. Coefs |
+-----------------+---------------------------------------|
+            year |        29           0          29     |
+ from_country_id |        45           1          44     |
+   to_country_id |        44           1          43    ?|
+---------------------------------------------------------+
+? = number of redundant parameters may be higher
+
+. estimates store model_3c
+
+.                 
+. * Model (4): The Full Model 
+. reghdfe norm_points distw contig comlang_off col45 ///
+>         from_log_gdp_usd to_log_gdp_usd gdp_similarity log_trade_openness ///
+>                 former_soviet former_yugoslav scandinavian balkan eu_membership ///
+>                 migration_intensity, absorb(year from_country_id to_country_id) vce(robust)
+(MWFE estimator converged in 8 iterations)
+
+HDFE Linear regression                            Number of obs   =     17,197
+Absorbing 3 HDFE groups                           F(  14,  17067) =     126.44
+                                                  Prob > F        =     0.0000
+                                                  R-squared       =     0.1867
+                                                  Adj R-squared   =     0.1805
+                                                  Within R-sq.    =     0.1160
+                                                  Root MSE        =     0.2606
+
+-------------------------------------------------------------------------------------
+                    |               Robust
+        norm_points | Coefficient  std. err.      t    P>|t|     [95% conf. interval]
+--------------------+----------------------------------------------------------------
+              distw |  -.0000133   4.12e-06    -3.23   0.001    -.0000214   -5.23e-06
+             contig |   .0236178   .0101182     2.33   0.020      .003785    .0434505
+        comlang_off |   .0322241   .0146268     2.20   0.028     .0035541     .060894
+              col45 |   .0860261   .0218556     3.94   0.000     .0431868    .1288653
+   from_log_gdp_usd |  -.0043818   .0120951    -0.36   0.717    -.0280894    .0193259
+     to_log_gdp_usd |   .0088973   .0115132     0.77   0.440    -.0136698    .0314644
+     gdp_similarity |  -.2392199   .0201972   -11.84   0.000    -.2788084   -.1996314
+ log_trade_openness |   .0488808   .0027992    17.46   0.000      .043394    .0543676
+      former_soviet |   .0682654   .0149795     4.56   0.000     .0389042    .0976267
+    former_yugoslav |   .2042107   .0405489     5.04   0.000     .1247306    .2836908
+       scandinavian |   .1667757   .0194562     8.57   0.000     .1286394    .2049119
+             balkan |  -.0230982   .0152653    -1.51   0.130    -.0530197    .0068233
+      eu_membership |  -.0101461   .0073576    -1.38   0.168    -.0245678    .0042756
+migration_intensity |   2.544345   .3198988     7.95   0.000     1.917311     3.17138
+              _cons |   .7176512   .0936129     7.67   0.000     .5341602    .9011421
+-------------------------------------------------------------------------------------
+
+Absorbed degrees of freedom:
+---------------------------------------------------------+
+     Absorbed FE | Categories  - Redundant  = Num. Coefs |
+-----------------+---------------------------------------|
+            year |        29           0          29     |
+ from_country_id |        45           1          44     |
+   to_country_id |        44           1          43    ?|
+---------------------------------------------------------+
+? = number of redundant parameters may be higher
+
+. estimates store model_4
+
+. 
+. * Model (4a): The Full Model (Jury Points)
+. reghdfe jury_points distw contig comlang_off col45 ///
+>         from_log_gdp_usd to_log_gdp_usd gdp_similarity log_trade_openness ///
+>                 former_soviet former_yugoslav scandinavian balkan eu_membership ///
+>                 migration_intensity, absorb(year from_country_id to_country_id) vce(robust)
+(MWFE estimator converged in 8 iterations)
+
+HDFE Linear regression                            Number of obs   =      5,921
+Absorbing 3 HDFE groups                           F(  14,   5818) =       9.59
+                                                  Prob > F        =     0.0000
+                                                  R-squared       =     0.1463
+                                                  Adj R-squared   =     0.1313
+                                                  Within R-sq.    =     0.0288
+                                                  Root MSE        =     3.3407
+
+-------------------------------------------------------------------------------------
+                    |               Robust
+        jury_points | Coefficient  std. err.      t    P>|t|     [95% conf. interval]
+--------------------+----------------------------------------------------------------
+              distw |  -.0001952   .0000825    -2.37   0.018    -.0003569   -.0000335
+             contig |  -.1537764   .2247995    -0.68   0.494    -.5944671    .2869142
+        comlang_off |   .4555179   .3149327     1.45   0.148    -.1618673    1.072903
+              col45 |   2.108735   .6380745     3.30   0.001     .8578719    3.359598
+   from_log_gdp_usd |  -.2182178    .636383    -0.34   0.732    -1.465765    1.029329
+     to_log_gdp_usd |  -1.907461   .5651068    -3.38   0.001    -3.015281    -.799642
+     gdp_similarity |  -1.004519   .5223975    -1.92   0.055    -2.028612    .0195745
+ log_trade_openness |   .3407974   .0659388     5.17   0.000     .2115328     .470062
+      former_soviet |   .3393055   .3157032     1.07   0.283    -.2795902    .9582012
+    former_yugoslav |   .5972105   1.314408     0.45   0.650    -1.979518    3.173939
+       scandinavian |   .6441521   .4206224     1.53   0.126    -.1804241    1.468728
+             balkan |  -.4066222   .3990103    -1.02   0.308    -1.188831    .3755864
+      eu_membership |  -.2534613   .2184492    -1.16   0.246     -.681703    .1747803
+migration_intensity |  -1.435061   9.509433    -0.15   0.880    -20.07709    17.20696
+              _cons |    18.0622   4.749503     3.80   0.000     8.751411    27.37299
+-------------------------------------------------------------------------------------
+
+Absorbed degrees of freedom:
+---------------------------------------------------------+
+     Absorbed FE | Categories  - Redundant  = Num. Coefs |
+-----------------+---------------------------------------|
+            year |         8           0           8     |
+ from_country_id |        42           1          41     |
+   to_country_id |        41           1          40    ?|
+---------------------------------------------------------+
+? = number of redundant parameters may be higher
+
+. estimates store model_4a
+
+.                 
+. * Model (4b): The Full Model (Tele Points)
+. reghdfe tele_points distw contig comlang_off col45 ///
+>         from_log_gdp_usd to_log_gdp_usd gdp_similarity log_trade_openness ///
+>                 former_soviet former_yugoslav scandinavian balkan eu_membership ///
+>                 migration_intensity, absorb(year from_country_id to_country_id) vce(robust)
+(MWFE estimator converged in 8 iterations)
+
+HDFE Linear regression                            Number of obs   =      5,921
+Absorbing 3 HDFE groups                           F(  14,   5818) =      46.12
+                                                  Prob > F        =     0.0000
+                                                  R-squared       =     0.2759
+                                                  Adj R-squared   =     0.2632
+                                                  Within R-sq.    =     0.1206
+                                                  Root MSE        =     3.0986
+
+-------------------------------------------------------------------------------------
+                    |               Robust
+        tele_points | Coefficient  std. err.      t    P>|t|     [95% conf. interval]
+--------------------+----------------------------------------------------------------
+              distw |  -.0002326   .0000747    -3.11   0.002     -.000379   -.0000861
+             contig |   .1680643   .2204023     0.76   0.446    -.2640062    .6001349
+        comlang_off |   .4835569   .2859073     1.69   0.091    -.0769276    1.044041
+              col45 |   1.542618   .5616174     2.75   0.006      .441639    2.643597
+   from_log_gdp_usd |   .2847722   .6007855     0.47   0.636    -.8929908    1.462535
+     to_log_gdp_usd |  -.8740157   .5118358    -1.71   0.088    -1.877404    .1293727
+     gdp_similarity |  -4.427746   .4647131    -9.53   0.000    -5.338757   -3.516735
+ log_trade_openness |   .6654206   .0600563    11.08   0.000     .5476878    .7831533
+      former_soviet |   .5546791   .3010633     1.84   0.065    -.0355169    1.144875
+    former_yugoslav |   6.388861   .8515484     7.50   0.000      4.71951    8.058212
+       scandinavian |   1.882177   .4850048     3.88   0.000     .9313878    2.832967
+             balkan |  -.9513184   .3639938    -2.61   0.009    -1.664882   -.2377552
+      eu_membership |  -.1868678   .2108028    -0.89   0.375    -.6001197    .2263841
+migration_intensity |   51.64982   9.367045     5.51   0.000     33.28693    70.01271
+              _cons |   14.41426   4.437888     3.25   0.001     5.714352    23.11417
+-------------------------------------------------------------------------------------
+
+Absorbed degrees of freedom:
+---------------------------------------------------------+
+     Absorbed FE | Categories  - Redundant  = Num. Coefs |
+-----------------+---------------------------------------|
+            year |         8           0           8     |
+ from_country_id |        42           1          41     |
+   to_country_id |        41           1          40    ?|
+---------------------------------------------------------+
+? = number of redundant parameters may be higher
+
+. estimates store model_4b
+
+. 
+. ********************************************************************************
+. **##5. Robustness Checks
+. ********************************************************************************
+. * UNDESA vs Eurostat vs Missing Check
+. reghdfe norm_points distw contig comlang_off col45 ///
+>         from_log_gdp_usd to_log_gdp_usd gdp_similarity log_trade_openness ///
+>                 former_soviet former_yugoslav scandinavian balkan eu_membership ///
+>                 migration_intensity if migration_source == "UN_DESA", ///
+>                 absorb(year from_country_id to_country_id) vce(robust)
+(MWFE estimator converged in 8 iterations)
+
+HDFE Linear regression                            Number of obs   =     15,714
+Absorbing 3 HDFE groups                           F(  14,  15584) =     120.19
+                                                  Prob > F        =     0.0000
+                                                  R-squared       =     0.1907
+                                                  Adj R-squared   =     0.1840
+                                                  Within R-sq.    =     0.1188
+                                                  Root MSE        =     0.2632
+
+-------------------------------------------------------------------------------------
+                    |               Robust
+        norm_points | Coefficient  std. err.      t    P>|t|     [95% conf. interval]
+--------------------+----------------------------------------------------------------
+              distw |  -8.08e-06   4.40e-06    -1.84   0.066    -.0000167    5.41e-07
+             contig |   .0220187   .0103098     2.14   0.033     .0018103     .042227
+        comlang_off |   .0346162   .0155998     2.22   0.026     .0040388    .0651935
+              col45 |   .0819642   .0218444     3.75   0.000     .0391467    .1247817
+   from_log_gdp_usd |  -.0061769   .0124765    -0.50   0.621    -.0306323    .0182786
+     to_log_gdp_usd |   .0118778   .0120108     0.99   0.323    -.0116648    .0354204
+     gdp_similarity |    -.28049   .0211813   -13.24   0.000    -.3220077   -.2389722
+ log_trade_openness |   .0510493   .0029667    17.21   0.000     .0452342    .0568644
+      former_soviet |   .0617781   .0153119     4.03   0.000     .0317651    .0917912
+    former_yugoslav |   .1907367    .041042     4.65   0.000     .1102897    .2711838
+       scandinavian |   .1793624   .0201137     8.92   0.000     .1399372    .2187876
+             balkan |  -.0206244   .0158251    -1.30   0.193    -.0516433    .0103946
+      eu_membership |  -.0058057    .007599    -0.76   0.445    -.0207006    .0090892
+migration_intensity |   2.528363   .3214378     7.87   0.000     1.898308    3.158419
+              _cons |   .7452437   .0967645     7.70   0.000     .5555741    .9349134
+-------------------------------------------------------------------------------------
+
+Absorbed degrees of freedom:
+---------------------------------------------------------+
+     Absorbed FE | Categories  - Redundant  = Num. Coefs |
+-----------------+---------------------------------------|
+            year |        29           0          29     |
+ from_country_id |        45           1          44     |
+   to_country_id |        44           1          43    ?|
+---------------------------------------------------------+
+? = number of redundant parameters may be higher
+
+. estimates store UNDESA_check
+
+. 
+. reghdfe norm_points distw contig comlang_off col45 ///
+>         from_log_gdp_usd to_log_gdp_usd gdp_similarity log_trade_openness ///
+>                 former_soviet former_yugoslav scandinavian balkan eu_membership ///
+>                 migration_intensity if migration_source == "Eurostat", ///
+>                 absorb(year from_country_id to_country_id) vce(robust)
+(MWFE estimator converged in 10 iterations)
+note: col45 omitted because of collinearity
+note: former_soviet omitted because of collinearity
+note: former_yugoslav omitted because of collinearity
+
+HDFE Linear regression                            Number of obs   =      1,483
+Absorbing 3 HDFE groups                           F(  11,   1406) =       2.63
+                                                  Prob > F        =     0.0025
+                                                  R-squared       =     0.2067
+                                                  Adj R-squared   =     0.1638
+                                                  Within R-sq.    =     0.0209
+                                                  Root MSE        =     0.2214
+
+-------------------------------------------------------------------------------------
+                    |               Robust
+        norm_points | Coefficient  std. err.      t    P>|t|     [95% conf. interval]
+--------------------+----------------------------------------------------------------
+              distw |  -.0000384   .0000186    -2.06   0.040    -.0000749   -1.84e-06
+             contig |  -.1099744   .0767158    -1.43   0.152    -.2604643    .0405154
+        comlang_off |  -.0283236   .0407542    -0.69   0.487    -.1082693     .051622
+              col45 |          0  (omitted)
+   from_log_gdp_usd |   .0040989   .0642075     0.06   0.949     -.121854    .1300518
+     to_log_gdp_usd |   .0758322   .0525421     1.44   0.149    -.0272372    .1789016
+     gdp_similarity |   .1426536   .2511203     0.57   0.570    -.3499571    .6352644
+ log_trade_openness |   .0117916    .009266     1.27   0.203    -.0063851    .0299684
+      former_soviet |          0  (omitted)
+    former_yugoslav |          0  (omitted)
+       scandinavian |   .0563526   .1063228     0.53   0.596    -.1522157     .264921
+             balkan |  -.0225515   .0438532    -0.51   0.607    -.1085761    .0634732
+      eu_membership |   .0440757   .0298858     1.47   0.140    -.0145499    .1027013
+migration_intensity |   761.4317   383.1647     1.99   0.047     9.795605    1513.068
+              _cons |  -.1789548   .5055787    -0.35   0.723    -1.170725     .812815
+-------------------------------------------------------------------------------------
+
+Absorbed degrees of freedom:
+---------------------------------------------------------+
+     Absorbed FE | Categories  - Redundant  = Num. Coefs |
+-----------------+---------------------------------------|
+            year |        16           0          16     |
+ from_country_id |        17           1          16     |
+   to_country_id |        35           1          34    ?|
+---------------------------------------------------------+
+? = number of redundant parameters may be higher
+
+. estimates store eurostat_check
+
+.                 
+. *Migration Stock Check
+. reghdfe norm_points distw contig comlang_off col45 ///
+>         from_log_gdp_usd to_log_gdp_usd gdp_similarity log_trade_openness ///
+>                 former_soviet former_yugoslav scandinavian balkan eu_membership ///
+>                 migrant_stock, absorb(year from_country_id to_country_id) vce(robust)
+(MWFE estimator converged in 8 iterations)
+
+HDFE Linear regression                            Number of obs   =     17,197
+Absorbing 3 HDFE groups                           F(  14,  17067) =     123.59
+                                                  Prob > F        =     0.0000
+                                                  R-squared       =     0.1847
+                                                  Adj R-squared   =     0.1786
+                                                  Within R-sq.    =     0.1139
+                                                  Root MSE        =     0.2609
+
+------------------------------------------------------------------------------------
+                   |               Robust
+       norm_points | Coefficient  std. err.      t    P>|t|     [95% conf. interval]
+-------------------+----------------------------------------------------------------
+             distw |   -.000014   4.13e-06    -3.39   0.001    -.0000221   -5.89e-06
+            contig |    .022783   .0100912     2.26   0.024     .0030031    .0425629
+       comlang_off |   .0561753   .0145488     3.86   0.000     .0276582    .0846924
+             col45 |   .0902895   .0216771     4.17   0.000     .0478002    .1327789
+  from_log_gdp_usd |   -.006265   .0120896    -0.52   0.604    -.0299619    .0174319
+    to_log_gdp_usd |    .008245   .0115114     0.72   0.474    -.0143184    .0308085
+    gdp_similarity |  -.2539406   .0201918   -12.58   0.000    -.2935186   -.2143625
+log_trade_openness |   .0503785   .0027992    18.00   0.000     .0448918    .0558653
+     former_soviet |   .0780661   .0149343     5.23   0.000     .0487934    .1073388
+   former_yugoslav |   .2636897   .0389406     6.77   0.000     .1873621    .3400173
+      scandinavian |    .168351   .0194776     8.64   0.000     .1301728    .2065292
+            balkan |  -.0229595    .015277    -1.50   0.133     -.052904     .006985
+     eu_membership |  -.0139509    .007341    -1.90   0.057    -.0283399    .0004382
+     migrant_stock |   1.28e-07   2.12e-08     6.04   0.000     8.66e-08    1.70e-07
+             _cons |   .7554832   .0935199     8.08   0.000     .5721746    .9387918
+------------------------------------------------------------------------------------
+
+Absorbed degrees of freedom:
+---------------------------------------------------------+
+     Absorbed FE | Categories  - Redundant  = Num. Coefs |
+-----------------+---------------------------------------|
+            year |        29           0          29     |
+ from_country_id |        45           1          44     |
+   to_country_id |        44           1          43    ?|
+---------------------------------------------------------+
+? = number of redundant parameters may be higher
+
+. estimates store migrant_check
+
+. 
+. * Tobit check
+. tobit norm_points distw contig comlang_off col45 ///
+>       from_log_gdp_usd to_log_gdp_usd gdp_similarity log_trade_openness ///
+>           former_soviet former_yugoslav scandinavian balkan eu_membership ///
+>           migration_intensity, ll(0)
+
+Refining starting values:
+
+Grid node 0:  Log likelihood = -15453.442
+
+Fitting full model:
+
+Iteration 0:  Log likelihood = -15453.442  
+Iteration 1:  Log likelihood = -12114.497  
+Iteration 2:  Log likelihood = -11515.717  
+Iteration 3:  Log likelihood = -11456.669  
+Iteration 4:  Log likelihood = -11456.434  
+Iteration 5:  Log likelihood = -11456.434  
+
+Tobit regression                                   Number of obs     =  17,197
+                                                          Uncensored =   8,449
+Limits: Lower =    0                                   Left-censored =   8,748
+        Upper = +inf                                  Right-censored =       0
+
+                                                   LR chi2(14)       = 1789.18
+                                                   Prob > chi2       =  0.0000
+Log likelihood = -11456.434                        Pseudo R2         =  0.0724
+
+-------------------------------------------------------------------------------------
+        norm_points | Coefficient  Std. err.      t    P>|t|     [95% conf. interval]
+--------------------+----------------------------------------------------------------
+              distw |   .0000211   1.98e-06    10.65   0.000     .0000172     .000025
+             contig |   .0273913   .0160158     1.71   0.087    -.0040014    .0587839
+        comlang_off |   .0538892   .0218467     2.47   0.014     .0110675     .096711
+              col45 |   .1136209   .0302126     3.76   0.000     .0544011    .1728407
+   from_log_gdp_usd |   -.014094   .0029552    -4.77   0.000    -.0198865   -.0083014
+     to_log_gdp_usd |  -.0201808   .0027041    -7.46   0.000    -.0254811   -.0148806
+     gdp_similarity |  -.2861286   .0332543    -8.60   0.000    -.3513105   -.2209468
+ log_trade_openness |   .0873777    .004188    20.86   0.000     .0791688    .0955867
+      former_soviet |   .1839283   .0206527     8.91   0.000     .1434468    .2244098
+    former_yugoslav |   .1097386   .0605902     1.81   0.070    -.0090245    .2285016
+       scandinavian |   .3567501   .0257263    13.87   0.000     .3063239    .4071764
+             balkan |   .0661158   .0259274     2.55   0.011     .0152955    .1169361
+      eu_membership |  -.0529325   .0091564    -5.78   0.000      -.07088   -.0349851
+migration_intensity |   3.643093    .382543     9.52   0.000      2.89327    4.392917
+              _cons |   .9535844   .0571236    16.69   0.000     .8416162    1.065553
+--------------------+----------------------------------------------------------------
+  var(e.norm_points)|   .2196256    .003783                      .2123344    .2271673
+-------------------------------------------------------------------------------------
+
+. estimates store tobit_check
+
+.           
+. * Restricted time sample
+. reghdfe norm_points distw contig comlang_off col45 ///
+>         from_log_gdp_usd to_log_gdp_usd gdp_similarity log_trade_openness ///
+>                 former_soviet former_yugoslav scandinavian balkan eu_membership ///
+>                 migration_intensity if year >= 2000, ///
+>                 absorb(year from_country_id to_country_id) vce(robust)
+(MWFE estimator converged in 8 iterations)
+
+HDFE Linear regression                            Number of obs   =     15,320
+Absorbing 3 HDFE groups                           F(  14,  15196) =     128.96
+                                                  Prob > F        =     0.0000
+                                                  R-squared       =     0.2084
+                                                  Adj R-squared   =     0.2020
+                                                  Within R-sq.    =     0.1256
+                                                  Root MSE        =     0.2553
+
+-------------------------------------------------------------------------------------
+                    |               Robust
+        norm_points | Coefficient  std. err.      t    P>|t|     [95% conf. interval]
+--------------------+----------------------------------------------------------------
+              distw |  -.0000129   4.24e-06    -3.05   0.002    -.0000212   -4.61e-06
+             contig |   .0336257   .0106378     3.16   0.002     .0127744    .0544771
+        comlang_off |   .0350977   .0153632     2.28   0.022      .004984    .0652113
+              col45 |   .0845651   .0225906     3.74   0.000     .0402847    .1288454
+   from_log_gdp_usd |   .0032433   .0136435     0.24   0.812    -.0234995    .0299862
+     to_log_gdp_usd |   .0005907   .0128371     0.05   0.963    -.0245714    .0257529
+     gdp_similarity |  -.2576035   .0213546   -12.06   0.000    -.2994611    -.215746
+ log_trade_openness |   .0490311   .0029138    16.83   0.000     .0433197    .0547426
+      former_soviet |   .0688458    .015154     4.54   0.000     .0391422    .0985495
+    former_yugoslav |   .2592126   .0408089     6.35   0.000     .1792223    .3392028
+       scandinavian |   .1603842   .0207249     7.74   0.000     .1197609    .2010075
+             balkan |   -.022801   .0161433    -1.41   0.158    -.0544439    .0088419
+      eu_membership |  -.0069339   .0079693    -0.87   0.384    -.0225546    .0086868
+migration_intensity |   2.537053   .3253154     7.80   0.000     1.899396    3.174711
+              _cons |   .7380972   .1054283     7.00   0.000      .531445    .9447493
+-------------------------------------------------------------------------------------
+
+Absorbed degrees of freedom:
+---------------------------------------------------------+
+     Absorbed FE | Categories  - Redundant  = Num. Coefs |
+-----------------+---------------------------------------|
+            year |        24           0          24     |
+ from_country_id |        45           1          44     |
+   to_country_id |        43           1          42    ?|
+---------------------------------------------------------+
+? = number of redundant parameters may be higher
+
+. estimates store time_check
+
+. 
+. * Big 5 Removal check
+. reghdfe norm_points distw contig comlang_off col45 ///
+>         from_log_gdp_usd to_log_gdp_usd gdp_similarity log_trade_openness ///
+>                 former_soviet former_yugoslav scandinavian balkan eu_membership ///
+>                 migration_intensity ///
+>                 if !inlist(to_country_id, "FRA", "DEU", "ITA", "ESP", "GBR"), ///
+>                 absorb(year from_country_id to_country_id) vce(robust)
+(MWFE estimator converged in 8 iterations)
+
+HDFE Linear regression                            Number of obs   =     13,404
+Absorbing 3 HDFE groups                           F(  14,  13279) =     113.27
+                                                  Prob > F        =     0.0000
+                                                  R-squared       =     0.2012
+                                                  Adj R-squared   =     0.1938
+                                                  Within R-sq.    =     0.1292
+                                                  Root MSE        =     0.2634
+
+-------------------------------------------------------------------------------------
+                    |               Robust
+        norm_points | Coefficient  std. err.      t    P>|t|     [95% conf. interval]
+--------------------+----------------------------------------------------------------
+              distw |  -.0000104   4.74e-06    -2.20   0.028    -.0000197   -1.11e-06
+             contig |   .0076319   .0118411     0.64   0.519    -.0155784    .0308422
+        comlang_off |   .0538903   .0176397     3.06   0.002     .0193141    .0884666
+              col45 |   .1091222   .0280629     3.89   0.000     .0541149    .1641295
+   from_log_gdp_usd |  -.0079914   .0139396    -0.57   0.566    -.0353149    .0193322
+     to_log_gdp_usd |  -.0062213   .0126948    -0.49   0.624    -.0311049    .0186623
+     gdp_similarity |  -.2064719   .0222195    -9.29   0.000    -.2500253   -.1629185
+ log_trade_openness |   .0528079   .0029555    17.87   0.000     .0470147    .0586011
+      former_soviet |    .048945   .0160573     3.05   0.002     .0174705    .0804196
+    former_yugoslav |   .1591493   .0424948     3.75   0.000     .0758534    .2424453
+       scandinavian |    .152201   .0198244     7.68   0.000     .1133423    .1910597
+             balkan |  -.0095549   .0159911    -0.60   0.550    -.0408998      .02179
+      eu_membership |  -.0263043    .008775    -3.00   0.003    -.0435044   -.0091041
+migration_intensity |   3.803196   .4418354     8.61   0.000     2.937136    4.669257
+              _cons |   .8359494   .0991294     8.43   0.000     .6416416    1.030257
+-------------------------------------------------------------------------------------
+
+Absorbed degrees of freedom:
+---------------------------------------------------------+
+     Absorbed FE | Categories  - Redundant  = Num. Coefs |
+-----------------+---------------------------------------|
+            year |        29           0          29     |
+ from_country_id |        45           1          44     |
+   to_country_id |        39           1          38    ?|
+---------------------------------------------------------+
+? = number of redundant parameters may be higher
+
+. estimates store big5_check
+
+.         
+. *Balkan check excluding former_yugoslav
+. reghdfe norm_points distw contig comlang_off col45 ///
+>         from_log_gdp_usd to_log_gdp_usd gdp_similarity log_trade_openness ///
+>                 former_soviet scandinavian balkan eu_membership ///
+>                 migration_intensity, ///
+>                 absorb(year from_country_id to_country_id) vce(robust)
+(MWFE estimator converged in 8 iterations)
+
+HDFE Linear regression                            Number of obs   =     17,197
+Absorbing 3 HDFE groups                           F(  13,  17068) =     133.85
+                                                  Prob > F        =     0.0000
+                                                  R-squared       =     0.1852
+                                                  Adj R-squared   =     0.1790
+                                                  Within R-sq.    =     0.1143
+                                                  Root MSE        =     0.2609
+
+-------------------------------------------------------------------------------------
+                    |               Robust
+        norm_points | Coefficient  std. err.      t    P>|t|     [95% conf. interval]
+--------------------+----------------------------------------------------------------
+              distw |  -.0000101   4.09e-06    -2.47   0.014    -.0000181   -2.07e-06
+             contig |   .0248884   .0101743     2.45   0.014     .0049456    .0448311
+        comlang_off |   .0337915   .0146213     2.31   0.021     .0051323    .0624508
+              col45 |   .0826519   .0218826     3.78   0.000     .0397597    .1255441
+   from_log_gdp_usd |  -.0057279   .0121005    -0.47   0.636    -.0294461    .0179903
+     to_log_gdp_usd |   .0081621   .0114965     0.71   0.478    -.0143723    .0306966
+     gdp_similarity |  -.2425328   .0201705   -12.02   0.000    -.2820691   -.2029965
+ log_trade_openness |   .0520623   .0027695    18.80   0.000     .0466339    .0574907
+      former_soviet |   .0600793   .0149189     4.03   0.000     .0308367    .0893219
+       scandinavian |   .1628176   .0194299     8.38   0.000      .124733    .2009022
+             balkan |   .0041866   .0152011     0.28   0.783    -.0256091    .0339822
+      eu_membership |  -.0098633   .0073678    -1.34   0.181     -.024305    .0045784
+migration_intensity |   2.770923   .3324806     8.33   0.000     2.119227     3.42262
+              _cons |   .7457132   .0935073     7.97   0.000     .5624293    .9289972
+-------------------------------------------------------------------------------------
+
+Absorbed degrees of freedom:
+---------------------------------------------------------+
+     Absorbed FE | Categories  - Redundant  = Num. Coefs |
+-----------------+---------------------------------------|
+            year |        29           0          29     |
+ from_country_id |        45           1          44     |
+   to_country_id |        44           1          43    ?|
+---------------------------------------------------------+
+? = number of redundant parameters may be higher
+
+. estimates store balkan_check
+
+. 
+. esttab model_1 model_2 model_3 model_4 using "results/tables/main_regression.csv", ///
+>     b(3) se(3) star(* 0.10 ** 0.05 *** 0.01) ///
+>     stats(N r2_within, labels("Observations" "Within R-Squared")) ///
+>     mtitles("Model 1" "Model 2" "Model 3" "Model 4") ///
+>     nogaps replace
+(output written to results/tables/main_regression.csv)
+
+.         
+. esttab model_4 model_4a model_4b using "results/tables/vote_regression.csv", ///
+>     b(3) se(3) star(* 0.10 ** 0.05 *** 0.01) ///
+>     stats(N r2_within, labels("Observations" "Within R-Squared")) ///
+>     mtitles("Normalised Points" "Jury Points" "Televote Points") ///
+>     nogaps replace
+(output written to results/tables/vote_regression.csv)
+
+. 
+. 
+end of do-file
+
+. exit, clear
