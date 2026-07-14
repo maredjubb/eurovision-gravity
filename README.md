@@ -23,7 +23,7 @@ the contest but cannot rule out cultural voting, producing a panel dataset of 38
 (though covariate availability restricts the regression sample to a subset of these years). Stata is then used to 
 estimate the regression models, with full results and discussion documented in 
 [`results-writeup.md`](./results/results-writeup.md). Finally, these estimates are integrated into an interactive Excel 
-dashboard (`03-eurovision-counterfactual-dashboard.xlsm`), creating an accessible tool for testing counterfactual 
+dashboard (`03-eurovision-counterfactual-dashboard.xlsx`), creating an accessible tool for testing counterfactual 
 scenarios and exploring the isolated impacts of individual covariates.
 
 ## Dataset Summary
@@ -233,7 +233,7 @@ Full econometric specification, regression results, and discussion are documente
 [`02-eurovision-analysis.do`](./02-eurovision-analysis.do).
 
 ## Excel Dashboard
-An interactive Excel counterfactual dashboard is available at `03-eurovision-counterfactual-dashboard.xlsm`, extending 
+An interactive Excel counterfactual dashboard is available at `03-eurovision-counterfactual-dashboard.xlsx`, extending 
 the regression analysis into an accessible exploratory tool.
 
 The dashboard applies the Model 4 regression coefficients, documented in 
